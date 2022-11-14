@@ -115,5 +115,15 @@ export default class RolloverSettingTab extends PluginSettingTab {
             this.plugin.loadData().then((value) => console.log(value));
           })
       );
+      new Setting(this.containerEl)
+        .setName('Insert todos below horizontal rule')
+        .setDesc(`If the heading has a horizontal rule directly below it, then put the rolled-over todos under the rule.`)
+        .addToggle(toggle => toggle
+            .setValue(this.plugin.settings.insertBelowHR || false)
+            .onChange(value => {
+                this.plugin.settings.insertBelowHR = value;
+                this.plugin.saveSettings();
+        })
+    );
   }
 }
